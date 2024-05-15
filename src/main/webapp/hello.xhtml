@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--<f:view>-->
+<!--    <h:outputLabel value="Hello, world"/>-->
+<!--</f:view>-->
+<h:head>
+   <title>Hello World</title>
+</h:head>
+<h:body>
+   <h1>Hello World</h1>
+   Controller ID:
+   <h:outputText id="contollerId" value="#{helloWorld.controllerID}" />
+   <h:form>
+      <h:outputLabel for="input" value="Input" />
+      <h:inputText id="input" value="#{helloWorld.input}" />
+      <h:commandButton value="Submit"
+                       action="#{helloWorld.submit}">
+         <f:ajax execute="@form" render=":output" />
+         <f:ajax execute="@form" render=":contollerId" />
+      </h:commandButton>
+   </h:form>
+   <h:outputText id="output" value="#{helloWorld.output}" />
+
+
+   <h:form>
+      <h:outputLabel for="msginput" value="Input Message" />
+      <h:inputText id="msginput" value="#{helloWorld.text.text}" />
+      <h:commandButton value="Submit"
+                       action="#{helloWorld.submitMessage}">
+         <f:ajax execute="@form" render=":table" />
+         <f:ajax execute="@form" render=":contollerId" />
+      </h:commandButton>
+   </h:form>
+   <h:dataTable id="table" value="#{helloWorld.messages}" var="text">
+      <h:column>#{text.id}</h:column>
+      <h:column>#{text.text}</h:column>
+   </h:dataTable>
+
+</h:body>
+
+
+</html>
