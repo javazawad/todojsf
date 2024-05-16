@@ -25,9 +25,9 @@
         <welcome-file>hello.xhtml</welcome-file>
     </welcome-file-list>
 
-    <data-source>
-        <name>jdbc/todo</name>
-<!--        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>-->
-<!--        <url>jdbc:h2:mem:test;MODE=LEGACY;DB_CLOSE_DELAY=-1</url>-->
-    </data-source>
+<!--    <data-source>-->
+<!--        <name>jdbc/todo</name>-->
+<!--&lt;!&ndash;        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>&ndash;&gt;-->
+<!--&lt;!&ndash;        <url>jdbc:h2:mem:test;MODE=LEGACY;DB_CLOSE_DELAY=-1</url>&ndash;&gt;-->
+<!--    </data-source>-->
 </web-app>

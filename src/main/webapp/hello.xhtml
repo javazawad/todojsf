@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <!--<f:view>-->
 <!--    <h:outputLabel value="Hello, world"/>-->
 <!--</f:view>-->
@@ -20,26 +21,35 @@
       <h:inputText id="input" value="#{helloWorld.input}" />
       <h:commandButton value="Submit"
                        action="#{helloWorld.submit}">
-         <f:ajax execute="@form" render=":output" />
-         <f:ajax execute="@form" render=":contollerId" />
+         <f:ajax execute="@form" render=":output :contollerId" />
+<!--         <f:ajax execute="@form" render=":contollerId" />-->
       </h:commandButton>
    </h:form>
    <h:outputText id="output" value="#{helloWorld.output}" />
 
 
-   <h:form>
-      <h:outputLabel for="msginput" value="Input Message" />
-      <h:inputText id="msginput" value="#{helloWorld.text.text}" />
-      <h:commandButton value="Submit"
-                       action="#{helloWorld.submitMessage}">
-         <f:ajax execute="@form" render=":table" />
-         <f:ajax execute="@form" render=":contollerId" />
-      </h:commandButton>
+<!--   messages part-->
+<!--   with primeface-->
+   <h1>The bellow section made with Primefaces</h1>
+
+   <h:form id="messageform">
+      <p:outputLabel for="msginput" value="Input Message" />
+      <p:inputText id="msginput" value="#{helloWorld.message.text}" />
+      <p:commandButton value="Submit"
+                       action="#{helloWorld.submitMessage}" >
+         <f:ajax execute="messageform" render="msgtable contollerId submitstatus" />
+      </p:commandButton>
+      <p:messages id="submitstatus" showDetail="false" autoUpdate="true" closable="true"  />
    </h:form>
-   <h:dataTable id="table" value="#{helloWorld.messages}" var="text">
-      <h:column>#{text.id}</h:column>
-      <h:column>#{text.text}</h:column>
-   </h:dataTable>
+   <p:dataTable id="msgtable" value="#{helloWorld.messages}" var="message">
+      <p:column>#{message.id}</p:column>
+      <p:column>#{message.text}</p:column>
+      <p:column>
+         <p:commandButton id="deleteMessage" value="Delete" action="#{helloWorld.deleteMessage(message)}" >
+            <f:ajax execute="deleteMessage" render="msgtable contollerId" />
+         </p:commandButton>
+      </p:column>
+   </p:dataTable>
 
 </h:body>
 
