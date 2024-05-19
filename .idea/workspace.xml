@@ -9,13 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed473e4-3bcd-4ab3-bf17-4687ea7c87a9" name="Changes" comment="intitial">
+    <list default="true" id="2ed473e4-3bcd-4ab3-bf17-4687ea7c87a9" name="Changes" comment="msg add, dlt, get. fix page update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/repository/MessageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/entity/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/view/HelloWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nokla/demojsf/view/HelloWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/hello.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/hello.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -212,6 +212,7 @@
       <workItem from="1715253983137" duration="17361000" />
       <workItem from="1715599604023" duration="29314000" />
       <workItem from="1715838143660" duration="2309000" />
+      <workItem from="1715841860352" duration="9816000" />
     </task>
     <task id="LOCAL-00001" summary="intitial">
       <option name="closed" value="true" />
@@ -221,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715756806487</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="db working">
+      <option name="closed" value="true" />
+      <created>1715841885457</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715841885457</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +249,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="intitial" />
-    <option name="LAST_COMMIT_MESSAGE" value="intitial" />
+    <MESSAGE value="db working" />
+    <MESSAGE value="msg add, dlt, get. fix page update" />
+    <option name="LAST_COMMIT_MESSAGE" value="msg add, dlt, get. fix page update" />
   </component>
 </project>

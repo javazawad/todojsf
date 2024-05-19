@@ -21,7 +21,7 @@
       <h:inputText id="input" value="#{helloWorld.input}" />
       <h:commandButton value="Submit"
                        action="#{helloWorld.submit}">
-         <f:ajax execute="@form" render=":output :contollerId" />
+         <f:ajax execute="@form" render="output contollerId input" />
 <!--         <f:ajax execute="@form" render=":contollerId" />-->
       </h:commandButton>
    </h:form>
@@ -36,17 +36,19 @@
       <p:outputLabel for="msginput" value="Input Message" />
       <p:inputText id="msginput" value="#{helloWorld.message.text}" />
       <p:commandButton value="Submit"
-                       action="#{helloWorld.submitMessage}" >
-         <f:ajax execute="messageform" render="msgtable contollerId submitstatus" />
+                       action="#{helloWorld.submitMessage}"
+                       update=":msgtable :contollerId submitstatus msginput">
+<!--         <p:ajax execute="messageform" render="msgtable contollerId submitstatus msginput" />-->
       </p:commandButton>
-      <p:messages id="submitstatus" showDetail="false" autoUpdate="true" closable="true"  />
+<!--      <p:messages id="submitstatus" showDetail="false" autoUpdate="true" closable="true"  />-->
+      <p:growl id="submitstatus" showDetail="false" autoUpdate="true" closable="true" life="3000" />
    </h:form>
    <p:dataTable id="msgtable" value="#{helloWorld.messages}" var="message">
       <p:column>#{message.id}</p:column>
       <p:column>#{message.text}</p:column>
       <p:column>
-         <p:commandButton id="deleteMessage" value="Delete" action="#{helloWorld.deleteMessage(message)}" >
-            <f:ajax execute="deleteMessage" render="msgtable contollerId" />
+         <p:commandButton id="deleteMessage" value="Delete" action="#{helloWorld.deleteMessage(message)}" update="msgtable :contollerId :messageform:submitstatus">
+<!--            <f:ajax execute="deleteMessage" render="msgtable contollerId" />-->
          </p:commandButton>
       </p:column>
    </p:dataTable>

@@ -62,6 +62,12 @@
             <version>13.0.0</version>
             <classifier>jakarta</classifier>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.data/jakarta-data-api -->
+        <dependency>
+            <groupId>jakarta.data</groupId>
+            <artifactId>jakarta-data-api</artifactId>
+            <version>1.0.0-M1</version>
+        </dependency>
 
     </dependencies>
 

@@ -8,8 +8,6 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.persistence.PostLoad;
-import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -55,28 +53,37 @@ public class HelloWorld {
         if (input == null){
             output = "";
         }
+        input = "";
         logger.warning("yo this is warning from submit");
     }
 
     public void submitMessage(){
         controllerID = String.valueOf(this);
-        logger.warning("before submit msg len: " + messages.size());
-        controllerID = String.valueOf(this);
-        messageService.create(message);
-        messages.add(message);
-        logger.warning("message submitted: " + message);
-
-//        messages.forEach(message1 -> logger.warning(message1.getText()));
-        logger.warning("after submit msg len: " + messages.size());
-        FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_INFO, "Message added successfully.", null));
-
+        try {
+            Message newMesssage = message.clone();      //create a clone of the message
+            messageService.create(newMesssage);
+            messages.add(newMesssage);
+            logger.warning("message submitted: " + message.getText());
+            FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_INFO, "Message added successfully.", null));
+        } catch (Exception e){
+            logger.severe("failed to create message exception: "+e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Message creation failed.", null));
+        } finally {
+            message.reset();
+        }
     }
 
     public void deleteMessage(Message message){
         controllerID = String.valueOf(this);
-        messageService.delete(message);
-        messages.remove(message);
-        logger.warning("delete message");
+        try {
+            messageService.delete(message);
+            messages.remove(message);
+            logger.warning("deleted message: " + message.getText());
+            FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_INFO, "Message deleted successfully.", null));
+        } catch (Exception e){
+            logger.severe("failed to delete message exceptio: "+e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Message deletion failed.", null));
+        }
     }
 
 
