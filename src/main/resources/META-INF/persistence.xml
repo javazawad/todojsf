@@ -7,6 +7,9 @@
         <jta-data-source>jdbc/todo</jta-data-source>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+<!--            jpa logging-->
+            <property name="eclipselink.logging.logger" value="ServerLogger"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
     </persistence-unit>
 <!--    <persistence-unit name="default">-->
