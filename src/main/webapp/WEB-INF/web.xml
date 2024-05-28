@@ -13,6 +13,7 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+
 <!--    instructs Jakarta Faces whether to interpret empty string submitted values as null in the model-->
     <context-param>
         <param-name>

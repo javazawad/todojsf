@@ -64,10 +64,19 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.data/jakarta-data-api -->
         <dependency>
-            <groupId>jakarta.data</groupId>
-            <artifactId>jakarta-data-api</artifactId>
-            <version>1.0.0-M1</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.moxy -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.moxy</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
+
 
     </dependencies>
 

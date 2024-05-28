@@ -15,39 +15,62 @@
 <h:body>
    <h1>Hello World</h1>
    Controller ID:
-   <h:outputText id="contollerId" value="#{helloWorld.controllerID}" />
+   <h:outputText id="contollerId" value="#{messageBean.controllerID}" />
    <h:form>
       <h:outputLabel for="input" value="Input" />
-      <h:inputText id="input" value="#{helloWorld.input}" />
+      <h:inputText id="input" value="#{messageBean.input}" />
       <h:commandButton value="Submit"
-                       action="#{helloWorld.submit}">
+                       action="#{messageBean.submit}">
          <f:ajax execute="@form" render="output contollerId input" />
 <!--         <f:ajax execute="@form" render=":contollerId" />-->
       </h:commandButton>
    </h:form>
-   <h:outputText id="output" value="#{helloWorld.output}" />
+   <h:outputText id="output" value="#{messageBean.output}" />
 
 
-<!--   messages part-->
-<!--   with primeface-->
+
+
+
+<!--after this is primeface-->
    <h1>The bellow section made with Primefaces</h1>
 
+<!--  products section -->
+   <p:button value="Add New Product" outcome="productForm.xhtml" />
+
+   <p:dataTable id="productTable" value="#{productListBean.productDTOs}" var="product">
+      <p:column>#{product.title}</p:column>
+      <p:column>#{product.price}</p:column>
+      <p:column>
+<!--         <p:button value="Details"  />-->
+         <p:commandButton value="Details" action="#{productListBean.viewProduct(product.id)}">
+            <f:param name="productId" value="#{product.id}" />
+         </p:commandButton>
+      </p:column>
+   </p:dataTable>
+
+
+
+
+
+   <!--   messages section-->
+   <!--   with primeface-->
+   <h2>Messages</h2>
    <h:form id="messageform">
       <p:outputLabel for="msginput" value="Input Message" />
-      <p:inputText id="msginput" value="#{helloWorld.message.text}" />
+      <p:inputText id="msginput" value="#{messageBean.messageText}" />
       <p:commandButton value="Submit"
-                       action="#{helloWorld.submitMessage}"
+                       action="#{messageBean.submitMessage}"
                        update=":msgtable :contollerId submitstatus msginput">
 <!--         <p:ajax execute="messageform" render="msgtable contollerId submitstatus msginput" />-->
       </p:commandButton>
 <!--      <p:messages id="submitstatus" showDetail="false" autoUpdate="true" closable="true"  />-->
       <p:growl id="submitstatus" showDetail="false" autoUpdate="true" closable="true" life="3000" />
    </h:form>
-   <p:dataTable id="msgtable" value="#{helloWorld.messages}" var="message">
+   <p:dataTable id="msgtable" value="#{messageBean.messages}" var="message">
       <p:column>#{message.id}</p:column>
       <p:column>#{message.text}</p:column>
       <p:column>
-         <p:commandButton id="deleteMessage" value="Delete" action="#{helloWorld.deleteMessage(message)}" update="msgtable :contollerId :messageform:submitstatus">
+         <p:commandButton id="deleteMessage" value="Delete" action="#{messageBean.deleteMessage(message)}" update="msgtable :contollerId :messageform:submitstatus">
 <!--            <f:ajax execute="deleteMessage" render="msgtable contollerId" />-->
          </p:commandButton>
       </p:column>

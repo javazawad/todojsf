@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+   <title>Add Product</title>
+</h:head>
+<h:body>
+    <h:outputLabel value="Add a new product"/>
+   <p:message id="productSubmitMessage" for="productForm" showDetail="true" />
+   <h:form id="productForm">
+      <h:panelGrid columns="2" cellpadding="5">
+         <p:outputLabel for="title" value="Title:" />
+         <p:inputText id="title" value="#{productBean.product.title}" required="true" />
+
+         <p:outputLabel for="price" value="Price:" />
+         <p:inputText id="price" value="#{productBean.product.price}" required="true" />
+
+         <p:outputLabel for="description" value="Description:" />
+         <p:inputTextarea id="description" value="#{productBean.product.description}"  />
+
+         <p:outputLabel for="rating" value="Rating:" />
+         <p:inputText id="rating" value="#{productBean.product.rating}" />
+
+<!--         <p:outputLabel for="manufacturer" value="Manufacturer:" />-->
+<!--         <p:selectOneMenu id="manufacturer" value="#{productBean.product.manufacturer}" required="true">-->
+<!--            <f:selectItems value="#{productBean.manufacturers}" var="manufacturer"-->
+<!--                           itemValue="#{manufacturer.id}" itemLabel="#{manufacturer.name}" actionListener="#{productBean.printProduct()}" />-->
+<!--         </p:selectOneMenu>-->
+
+         <p:commandButton value="Add Product" action="#{productBean.saveProduct()}" />
+      </h:panelGrid>
+
+   </h:form>
+
+
+
+
+</h:body>
+</html>

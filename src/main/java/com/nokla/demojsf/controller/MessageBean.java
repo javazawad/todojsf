@@ -1,4 +1,4 @@
-package com.nokla.demojsf.view;
+package com.nokla.demojsf.controller;
 
 import com.nokla.demojsf.entity.Message;
 import com.nokla.demojsf.service.MessageService;
@@ -8,45 +8,46 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class HelloWorld {
-    protected Logger logger = Logger.getLogger(HelloWorld.class.getName());
+public class MessageBean {
+    protected Logger logger = Logger.getLogger(MessageBean.class.getName());
+    @Setter
+    @Getter
     private String input;
+    @Getter
     private String output;
     private String controllerID;
 
-    private final Message message = new Message();
-    private List<Message> messages;
+    private String messageText;
+
+//    private final Message message = new Message();
+    private List<Message> messages = new Vector<Message>();
 
     @Inject
     private MessageService messageService;
 
-    public String getOutput() {
-        return output;
-    }
-
-    public String getInput() {
-        return input;
-    }
-
-    public void setInput(String input) {
-        this.input = input;
-    }
-
-
 
     @PostConstruct
     public void init(){
-        messages = messageService.getMessages();
+        try{
+//            messageText = "";
+            messages = messageService.getMessages();
+        } catch (Exception e){
+            logger.severe("failed to load messages exception: " + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_FATAL, "Failed to load messages", null));
+        }
         logger.warning("this is the init with @postconstruct");
     }
 
-    public void submit(){
+    public void submit(){   // submit function for the simple input field
         controllerID = String.valueOf(this);
         System.out.println("helloworld bean address: " + this);
         output = "your input: " + input;
@@ -60,16 +61,17 @@ public class HelloWorld {
     public void submitMessage(){
         controllerID = String.valueOf(this);
         try {
-            Message newMesssage = message.clone();      //create a clone of the message
+            Message newMesssage = new Message();
+            newMesssage.setText(messageText);
             messageService.create(newMesssage);
             messages.add(newMesssage);
-            logger.warning("message submitted: " + message.getText());
+            logger.warning("message submitted: " + newMesssage.getText());
             FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_INFO, "Message added successfully.", null));
         } catch (Exception e){
             logger.severe("failed to create message exception: "+e.getMessage());
             FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Message creation failed.", null));
         } finally {
-            message.reset();
+            messageText = "";
         }
     }
 
@@ -78,7 +80,7 @@ public class HelloWorld {
         try {
             messageService.delete(message);
             messages.remove(message);
-            logger.warning("deleted message: " + message.getText());
+            logger.warning( message.getId()+"deleted message: " + message.getText());
             FacesContext.getCurrentInstance().addMessage("submitstatus", new FacesMessage(FacesMessage.SEVERITY_INFO, "Message deleted successfully.", null));
         } catch (Exception e){
             logger.severe("failed to delete message exceptio: "+e.getMessage());
@@ -92,11 +94,16 @@ public class HelloWorld {
         return controllerID;
     }
 
-    public Message getMessage() {
-        return message;
-    }
 
     public List<Message> getMessages() {
         return messages;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 }
