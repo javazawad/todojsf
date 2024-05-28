@@ -1,16 +1,19 @@
 package com.nokla.demojsf.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "t_product")
 @Getter @Setter
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    private @NotNull String title;
+    private Float price;
     private String description;
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
@@ -18,11 +21,10 @@ public class Product {
 
     @Override
     public String toString() {
-        String sb = "Product: " + "title='" + title + '\'' +
-                ", description='" + description + '\'';
-        if (manufacturer != null) {
-            sb += ", manufacturer=" +  manufacturer.toString() + '\'';
-        }
-        return sb;
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                ", manufacturer=" + manufacturer +
+                '}';
     }
 }

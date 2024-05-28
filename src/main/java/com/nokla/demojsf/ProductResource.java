@@ -23,8 +23,8 @@ public class ProductResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts() {
-        List<Product> products = productService.getAllProducts();
-        products.forEach(System.out::println);
+//        List<Product> products = productService.getAllProducts();
+//        products.forEach(System.out::println);
         List<ProductDTO> productDTOS = productService.getAllProductsDTO();
         productDTOS.forEach(System.out::println);
         return Response.ok(productDTOS).build();
@@ -40,7 +40,6 @@ public class ProductResource {
         System.out.println(productDTO);
         return Response.ok(productDTO).build();
     }
-
 
 
     @GET()
