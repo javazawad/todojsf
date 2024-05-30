@@ -29,7 +29,7 @@
 
 
 
-
+   <p:button value="Go to User Page" outcome="userPage.xhtml" />
 
 <!--after this is primeface-->
    <h1>The bellow section made with Primefaces</h1>
@@ -38,9 +38,14 @@
    <p:button value="Add New Product" outcome="productForm.xhtml" />
 
    <p:dataTable id="productTable" value="#{productListBean.productDTOs}" var="product">
-      <p:column>#{product.title}</p:column>
-      <p:column>#{product.price}</p:column>
       <p:column>
+         <f:facet name="title">Title</f:facet>
+         #{product.title}</p:column>
+      <p:column>
+         <f:facet name="price">Price</f:facet>
+         #{product.price}</p:column>
+      <p:column>
+         <f:facet name="action">Action</f:facet>
 <!--         <p:button value="Details"  />-->
          <p:commandButton value="Details" action="#{productListBean.viewProduct(product.id)}">
             <f:param name="productId" value="#{product.id}" />
